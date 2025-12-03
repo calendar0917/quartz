@@ -1,6 +1,4 @@
 ---
-title: "{{title}}"
-created: <% tp.date.now("YYYY-MM-DD HH:mm") %>
-status: "in-progress"
-file_size: <% tp.file.stat.size %>
+creation date: <% tp.file.creation_date() %>
+modification date: <% tp.file.last_modified_date() %>
 ---
