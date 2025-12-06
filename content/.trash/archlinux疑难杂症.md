@@ -49,3 +49,24 @@ flatpak override --user --env=GTK_IM_MODULE=fcitx --env=QT_IM_MODULE=fcitx --env
 niri 还是不太行，先弃用了。
 
 参看[[KDE Plasma]]
+### Java版本
+可以用 `archlinux-java` 进行版本管理
+
+```bash
+archlinux-java status  
+...
+sudo archlinux-java set java-11-openjdk
+```
+### Burp Suite 激活
+参考 https://github.com/mikhailde/burpsuite-pro-archlinux
+
+jdk-21 是可以的。
+
+但是缩放有问题，编辑下 zshrc：
+
+```bash
+export JAVA_TOOL_OPTIONS="-Dsun.java2d.uiScale=2.0 -Dsun.java2d.dpiaware=false"
+```
+
+- **`-Dsun.java2d.uiScale=2.0`**: 将 $UI$ 缩放强制设置为 **200%**。
+- **`-Dsun.java2d.dpiaware=false`**: 这是关键。它告诉 $Java$ **不要**尝试从操作系统（即 $KDE$）获取 $DPI$ 或缩放信息。
