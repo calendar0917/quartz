@@ -1,0 +1,1606 @@
+{
+  "id": "e500f04d-ed7d-4ac8-a064-f2557a9779bd",
+  "title": "Home.md 测试",
+  "messages": [
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 1,
+                  "format": 0,
+                  "mode": "token",
+                  "style": "",
+                  "text": "@Home.md",
+                  "type": "mention",
+                  "version": 1,
+                  "mentionName": "Home.md",
+                  "mentionable": {
+                    "type": "current-file",
+                    "file": "Home.md"
+                  }
+                },
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": " test",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n@Home.md test\n\n"
+        }
+      ],
+      "id": "0517460a-d377-4f2c-a608-c0238306edfd",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "Home.md"
+        }
+      ],
+      "reasoningLevel": "medium"
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 1,
+                  "format": 0,
+                  "mode": "token",
+                  "style": "",
+                  "text": "@Home.md",
+                  "type": "mention",
+                  "version": 1,
+                  "mentionName": "Home.md",
+                  "mentionable": {
+                    "type": "current-file",
+                    "file": "Home.md"
+                  }
+                },
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": " test",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n@Home.md test\n\n"
+        }
+      ],
+      "id": "bd49b65e-543f-49a2-8a70-ef08da00a00f",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "Home.md"
+        }
+      ],
+      "reasoningLevel": "medium"
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 1,
+                  "format": 0,
+                  "mode": "token",
+                  "style": "",
+                  "text": "@Home.md",
+                  "type": "mention",
+                  "version": 1,
+                  "mentionName": "Home.md",
+                  "mentionable": {
+                    "type": "current-file",
+                    "file": "Home.md"
+                  }
+                },
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": " test",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n@Home.md test\n\n"
+        }
+      ],
+      "id": "ea038126-1116-4d6f-a64d-8db95d70ef88",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "Home.md"
+        }
+      ],
+      "reasoningLevel": "medium"
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 1,
+                  "format": 0,
+                  "mode": "token",
+                  "style": "",
+                  "text": "@Home.md",
+                  "type": "mention",
+                  "version": 1,
+                  "mentionName": "Home.md",
+                  "mentionable": {
+                    "type": "current-file",
+                    "file": "Home.md"
+                  }
+                },
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": " test",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n@Home.md test\n\n"
+        }
+      ],
+      "id": "dfc1e8d4-69cb-43f1-bc26-c49763be7acc",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "Home.md"
+        }
+      ],
+      "reasoningLevel": "medium"
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 1,
+                  "format": 0,
+                  "mode": "token",
+                  "style": "",
+                  "text": "@Home.md",
+                  "type": "mention",
+                  "version": 1,
+                  "mentionName": "Home.md",
+                  "mentionable": {
+                    "type": "current-file",
+                    "file": "Home.md"
+                  }
+                },
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": " test",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n@Home.md test\n\n"
+        }
+      ],
+      "id": "5ff69634-633b-4959-a6bd-f4f81823cffb",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "Home.md"
+        }
+      ],
+      "reasoningLevel": "medium"
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 1,
+                  "format": 0,
+                  "mode": "token",
+                  "style": "",
+                  "text": "@Home.md",
+                  "type": "mention",
+                  "version": 1,
+                  "mentionName": "Home.md",
+                  "mentionable": {
+                    "type": "current-file",
+                    "file": "Home.md"
+                  }
+                },
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": " test",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n@Home.md test\n\n"
+        }
+      ],
+      "id": "a35bbd9c-7ec8-4f74-affa-a05c899ccdba",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "Home.md"
+        }
+      ],
+      "reasoningLevel": "medium"
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 1,
+                  "format": 0,
+                  "mode": "token",
+                  "style": "",
+                  "text": "@Home.md",
+                  "type": "mention",
+                  "version": 1,
+                  "mentionName": "Home.md",
+                  "mentionable": {
+                    "type": "current-file",
+                    "file": "Home.md"
+                  }
+                },
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": " test",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n@Home.md test\n\n"
+        }
+      ],
+      "id": "cde0602d-0b43-4965-bf48-4a4ef8d909e0",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "Home.md"
+        }
+      ],
+      "reasoningLevel": "medium"
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 1,
+                  "format": 0,
+                  "mode": "token",
+                  "style": "",
+                  "text": "@Home.md",
+                  "type": "mention",
+                  "version": 1,
+                  "mentionName": "Home.md",
+                  "mentionable": {
+                    "type": "current-file",
+                    "file": "Home.md"
+                  }
+                },
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": " test",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n@Home.md test\n\n"
+        }
+      ],
+      "id": "5b3451a6-2a3e-450d-b5b3-23db245bf5c2",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "Home.md"
+        }
+      ],
+      "reasoningLevel": "medium"
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 1,
+                  "format": 0,
+                  "mode": "token",
+                  "style": "",
+                  "text": "@Home.md",
+                  "type": "mention",
+                  "version": 1,
+                  "mentionName": "Home.md",
+                  "mentionable": {
+                    "type": "current-file",
+                    "file": "Home.md"
+                  }
+                },
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": " test",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n@Home.md test\n\n"
+        }
+      ],
+      "id": "db554216-88f4-4447-98ef-ffa22fc2064e",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "Home.md"
+        }
+      ],
+      "reasoningLevel": "medium"
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 1,
+                  "format": 0,
+                  "mode": "token",
+                  "style": "",
+                  "text": "@Home.md",
+                  "type": "mention",
+                  "version": 1,
+                  "mentionName": "Home.md",
+                  "mentionable": {
+                    "type": "current-file",
+                    "file": "Home.md"
+                  }
+                },
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": " test",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n@Home.md test\n\n"
+        }
+      ],
+      "id": "314d5268-e58b-44b3-8300-4e48548a1858",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "Home.md"
+        }
+      ],
+      "reasoningLevel": "medium"
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 1,
+                  "format": 0,
+                  "mode": "token",
+                  "style": "",
+                  "text": "@Home.md",
+                  "type": "mention",
+                  "version": 1,
+                  "mentionName": "Home.md",
+                  "mentionable": {
+                    "type": "current-file",
+                    "file": "Home.md"
+                  }
+                },
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": " test",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n@Home.md test\n\n"
+        }
+      ],
+      "id": "2e4cfe4d-3806-4787-a1a4-3f4c731c3bb0",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "Home.md"
+        }
+      ],
+      "reasoningLevel": "off"
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 1,
+                  "format": 0,
+                  "mode": "token",
+                  "style": "",
+                  "text": "@Home.md",
+                  "type": "mention",
+                  "version": 1,
+                  "mentionName": "Home.md",
+                  "mentionable": {
+                    "type": "current-file",
+                    "file": "Home.md"
+                  }
+                },
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": " test",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n@Home.md test\n\n"
+        }
+      ],
+      "id": "89273717-52a3-4a5e-8e7e-ee1e28417037",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "Home.md"
+        }
+      ],
+      "reasoningLevel": "off"
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 1,
+                  "format": 0,
+                  "mode": "token",
+                  "style": "",
+                  "text": "@Home.md",
+                  "type": "mention",
+                  "version": 1,
+                  "mentionName": "Home.md",
+                  "mentionable": {
+                    "type": "current-file",
+                    "file": "Home.md"
+                  }
+                },
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": " why!",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n@Home.md why!\n\n"
+        }
+      ],
+      "id": "15207541-c3d8-4b1a-9ca5-923517999355",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "Home.md"
+        }
+      ],
+      "reasoningLevel": "off"
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 1,
+                  "format": 0,
+                  "mode": "token",
+                  "style": "",
+                  "text": "@Home.md",
+                  "type": "mention",
+                  "version": 1,
+                  "mentionName": "Home.md",
+                  "mentionable": {
+                    "type": "current-file",
+                    "file": "Home.md"
+                  }
+                },
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": " test",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n@Home.md test\n\n"
+        }
+      ],
+      "id": "c529663d-a656-406e-8c76-4c7570a40b65",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "Home.md"
+        }
+      ],
+      "reasoningLevel": "off"
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 1,
+                  "format": 0,
+                  "mode": "token",
+                  "style": "",
+                  "text": "@Home.md",
+                  "type": "mention",
+                  "version": 1,
+                  "mentionName": "Home.md",
+                  "mentionable": {
+                    "type": "current-file",
+                    "file": "Home.md"
+                  }
+                },
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": " test",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n@Home.md test\n\n"
+        }
+      ],
+      "id": "44c65a57-fa9d-439e-9971-26799a735dc2",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "Home.md"
+        }
+      ],
+      "reasoningLevel": "off"
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 1,
+                  "format": 0,
+                  "mode": "token",
+                  "style": "",
+                  "text": "@Home.md",
+                  "type": "mention",
+                  "version": 1,
+                  "mentionName": "Home.md",
+                  "mentionable": {
+                    "type": "current-file",
+                    "file": "Home.md"
+                  }
+                },
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": " test",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n@Home.md test\n\n"
+        }
+      ],
+      "id": "4f6afa42-298a-46b8-b6a8-3af9ea9fbbe7",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "Home.md"
+        }
+      ],
+      "reasoningLevel": "off"
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 1,
+                  "format": 0,
+                  "mode": "token",
+                  "style": "",
+                  "text": "@Home.md",
+                  "type": "mention",
+                  "version": 1,
+                  "mentionName": "Home.md",
+                  "mentionable": {
+                    "type": "current-file",
+                    "file": "Home.md"
+                  }
+                },
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": " test",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n@Home.md test\n\n"
+        }
+      ],
+      "id": "55a36e9e-b880-4c1e-bd9a-c715683092b4",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "Home.md"
+        }
+      ],
+      "reasoningLevel": "off"
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 1,
+                  "format": 0,
+                  "mode": "token",
+                  "style": "",
+                  "text": "@Home.md",
+                  "type": "mention",
+                  "version": 1,
+                  "mentionName": "Home.md",
+                  "mentionable": {
+                    "type": "current-file",
+                    "file": "Home.md"
+                  }
+                },
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": " test",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n@Home.md test\n\n"
+        }
+      ],
+      "id": "c951c05f-77f5-4588-ae44-b8adf3bc9fdd",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "Home.md"
+        }
+      ],
+      "reasoningLevel": "off"
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 1,
+                  "format": 0,
+                  "mode": "token",
+                  "style": "",
+                  "text": "@Home.md",
+                  "type": "mention",
+                  "version": 1,
+                  "mentionName": "Home.md",
+                  "mentionable": {
+                    "type": "current-file",
+                    "file": "Home.md"
+                  }
+                },
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": " test",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n@Home.md test\n\n"
+        }
+      ],
+      "id": "58575ad6-6f00-40fa-9aaf-32833a1ef565",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "Home.md"
+        }
+      ],
+      "reasoningLevel": "off"
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 1,
+                  "format": 0,
+                  "mode": "token",
+                  "style": "",
+                  "text": "@Home.md",
+                  "type": "mention",
+                  "version": 1,
+                  "mentionName": "Home.md",
+                  "mentionable": {
+                    "type": "current-file",
+                    "file": "Home.md"
+                  }
+                },
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": " test",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n@Home.md test\n\n"
+        }
+      ],
+      "id": "cb23a9ee-a953-4290-83c2-def80d70d8b3",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "Home.md"
+        }
+      ],
+      "reasoningLevel": "off"
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 1,
+                  "format": 0,
+                  "mode": "token",
+                  "style": "",
+                  "text": "@Home.md",
+                  "type": "mention",
+                  "version": 1,
+                  "mentionName": "Home.md",
+                  "mentionable": {
+                    "type": "current-file",
+                    "file": "Home.md"
+                  }
+                },
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": " test",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n@Home.md test\n\n"
+        }
+      ],
+      "id": "190b7f04-cf16-4c27-8fe5-bc52fe20d281",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "Home.md"
+        }
+      ],
+      "reasoningLevel": "off"
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 1,
+                  "format": 0,
+                  "mode": "token",
+                  "style": "",
+                  "text": "@Home.md",
+                  "type": "mention",
+                  "version": 1,
+                  "mentionName": "Home.md",
+                  "mentionable": {
+                    "type": "current-file",
+                    "file": "Home.md"
+                  }
+                },
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": " test",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n@Home.md test\n\n"
+        }
+      ],
+      "id": "366cc7c4-d493-4af0-8e8f-b7dbe0c6c944",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "Home.md"
+        }
+      ],
+      "reasoningLevel": "off"
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 1,
+                  "format": 0,
+                  "mode": "token",
+                  "style": "",
+                  "text": "@Home.md",
+                  "type": "mention",
+                  "version": 1,
+                  "mentionName": "Home.md",
+                  "mentionable": {
+                    "type": "current-file",
+                    "file": "Home.md"
+                  }
+                },
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": " test",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n@Home.md test\n\n"
+        }
+      ],
+      "id": "022ca3c7-c11f-462a-8b70-edb81698ebe1",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "Home.md"
+        }
+      ],
+      "reasoningLevel": "off"
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 1,
+                  "format": 0,
+                  "mode": "token",
+                  "style": "",
+                  "text": "@Home.md",
+                  "type": "mention",
+                  "version": 1,
+                  "mentionName": "Home.md",
+                  "mentionable": {
+                    "type": "current-file",
+                    "file": "Home.md"
+                  }
+                },
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": " test",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n@Home.md test\n\n"
+        }
+      ],
+      "id": "1fc41281-0c68-4e84-89b9-a20675faea1d",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "Home.md"
+        }
+      ],
+      "reasoningLevel": "off"
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 1,
+                  "format": 0,
+                  "mode": "token",
+                  "style": "",
+                  "text": "@Home.md",
+                  "type": "mention",
+                  "version": 1,
+                  "mentionName": "Home.md",
+                  "mentionable": {
+                    "type": "current-file",
+                    "file": "Home.md"
+                  }
+                },
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": " test",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n@Home.md test\n\n"
+        }
+      ],
+      "id": "ef6fe295-a687-4694-8260-8a78c8e05ed0",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "Home.md"
+        }
+      ],
+      "reasoningLevel": "off"
+    },
+    {
+      "role": "assistant",
+      "content": "看起来你正在构建一个深度学习与系统思考的个人主页。你的清单涵盖了从操作系统（OSTEP）、网络协议到社会学（《监控资本主义时代》、《毫无意义的工作》）以及系统理论（《系统之美》、《控制论》）的硬核内容。\n\n针对你反复发送的“test”和“why!”，我理解你可能是在测试我对复杂文档结构的理解能力，或者是对当前任务进度的某种焦虑。为了让这个首页更具洞察力和行动力，我建议对 `Home.md` 进行一些结构化优化，增加“当前重点”和“知识维度”的区分。\n\n以下是对 `Home.md` 的优化建议，主要增加了进度管理和更清晰的分类：\n\n<smtcmp_block filename=\"Home.md\" language=\"markdown\">\n<!-- ... existing content ... -->\n## 今日\n> [!TIP] 每日格言：系统不是各部分的简单加总，而是各部分之间的相互作用。\n- [ ] **核心任务**：\n- [ ] **碎片时间**：\n\n## 待办\n- [ ] 智能体比赛（优先级：高）\n- [ ] [[Serial 项目]]（进度：进行中）\n\n## 计划中\n### 🛠️ 技术构建 (底层与系统)\n- [ ] **重点：** OSTEP (Operating Systems: Three Easy Pieces)\n- [ ] 自顶向下网络\n- [ ] Go 语言并发编程\n- [ ] Docker 核心原理与容器编排\n\n### 📚 阅读清单 (系统、权力与反思)\n#### 正在阅读\n- [x] 置身室内\n- [ ] **监控资本主义时代** · *阅读进度：10%*\n- [ ] **毫无意义的工作**\n\n#### 深度思考：系统与博弈\n- [ ] **控制论** (Cybernetics)\n- [ ] 系统之美\n- [ ] 反脆弱\n- [ ] 独裁者手册\n- [ ] 君主论 / 韩非子\n\n#### 认知与财富\n- [ ] 穷查理宝典\n- [ ] 原则\n- [ ] 密码朋克的历史\n- [ ] 潜规则\n<!-- ... existing content ... -->\n</smtcmp_block>\n\n### 💡 深度见解与建议：\n\n1.  **知识体系的关联性**：你的清单中，技术类的 **OSTEP/Docker** 与阅读类的 **《控制论》/《系统之美》** 其实是高度同构的。前者是计算机系统的控制与资源分配，后者是社会与自然系统的控制与反馈。建议你在学习 OSTEP 的进程调度时，对比阅读《系统之美》中的反馈回路概念。\n2.  **“监控资本主义”与“智能体”**：你正在参加智能体比赛，而《监控资本主义时代》恰好讨论了算法对行为的预测与控制。在设计智能体时，思考其伦理边界和数据确权，可能会让你的比赛项目在技术之上多一层人文深度。\n3.  **阅读压力缓解**：你的书单非常“重”，《监控资本主义时代》和《控制论》都是大部头。建议采用 **“1+1阅读法”**：一本硬核烧脑书（如《控制论》）搭配一本相对轻量或实用的书（如《穷查理宝典》），避免认知疲劳导致进度停滞。\n\n如果你对某个特定的“test”或“why!”有具体的疑问（比如某个插件失效或是对某个知识点的困惑），请随时告诉我！",
+      "id": "af78602b-696d-4553-9357-4177c844b161",
+      "metadata": {
+        "model": {
+          "providerType": "openai-compatible",
+          "providerId": "cloud",
+          "id": "cloud/gemini-3-flash-preview",
+          "model": "gemini-3-flash-preview",
+          "name": "gemini-flash",
+          "enable": true,
+          "reasoningType": "gemini",
+          "thinking": {
+            "enabled": false,
+            "thinking_budget": 0
+          }
+        },
+        "usage": {
+          "prompt_tokens": 671,
+          "completion_tokens": 1708,
+          "total_tokens": 2379,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 935,
+            "accepted_prediction_tokens": 0,
+            "rejected_prediction_tokens": 0
+          }
+        },
+        "durationMs": 17249,
+        "generationState": "completed"
+      }
+    }
+  ],
+  "createdAt": 1770600999624,
+  "updatedAt": 1770602312673,
+  "schemaVersion": 1,
+  "overrides": {
+    "temperature": null,
+    "top_p": null,
+    "maxContextMessages": null,
+    "stream": false,
+    "useVaultSearch": false,
+    "useWebSearch": false,
+    "useUrlContext": false
+  },
+  "reasoningLevel": "auto"
+}
