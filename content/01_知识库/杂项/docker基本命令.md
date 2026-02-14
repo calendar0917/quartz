@@ -1,8 +1,15 @@
 ## docker
 
 ### 镜像
+配置文件：`/etc/docker/daemon.json`
 
-```docker
+重载：
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
+
+```bash
 # 拉取镜像（缺省标签为latest）
 docker pull 镜像名:标签
 

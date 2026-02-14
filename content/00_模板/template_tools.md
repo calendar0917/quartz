@@ -6,3 +6,4 @@
 ```bash
 # 这里的命令是干嘛的
 command -flag target
+command -flag target
