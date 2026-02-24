@@ -154,6 +154,50 @@ ida-pro安装：https://archive.org/details/ida-pro_91_x64linux
 
 `kill <pid>` 给制定 pid 发送信号
 ### 查看程序错误信息
+### 空间清理
+
+[[archlinux 空间清理]]
+pacman、yay 等包管理器会留下很多缓存：
+
+```bash
+# 彻底删除缓存
+sudo pacman -Scc
+
+# 仅保留最近的3个版本，删除其余所有（推荐配置）
+paccache -r
+
+# 删除所有已卸载包的缓存版本（清理幽灵依赖）
+paccache -ruk0
+
+# 递归删除所有孤立依赖
+pacman -Rns $(pacman -Qtdq)
+```
+
+控制日志大小：
+
+```bash
+# 仅保留最近两周的日志
+journalctl --vacuum-time=2weeks
+
+# 或者限制日志总大小为 500M
+journalctl --vacuum-size=500M
+```
+
+扫描占用：
+
+```bash
+ncdu /
+# 重点看各种 cache
+```
+
+docker：
+
+```bash
+# 销毁所有未使用的镜像、容器、网络
+docker system prune -a
+```
+
+
 
 终端中，程序运行会产生三种流：stdin,stderr,stdout，文件描述符分别为 0,1,2 而 stderr 一般不会直接显示，所以需要重定向出来看：
 
@@ -166,5 +210,3 @@ ida-pro安装：https://archive.org/details/ida-pro_91_x64linux
 部分程序有自定义日志文件：
 
 `tail -f /var/log/name/error.log`
-
-
