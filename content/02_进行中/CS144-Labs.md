@@ -774,6 +774,8 @@ TCPSenderMessage TCPSender::make_empty_message() const
 
 写完了以后，感觉主要的难点在理解各个状态间的流转，以及对各个组件的认识。在写之前就要想清楚需要记录什么状态、它们在什么时候会怎么被改变。然后就是实现的细节也很多，标志位的判断（尤其是 has-error），都是需要考虑到的。
 
+
+
 ## Check4
 ### 观察网络链路
 
@@ -1133,3 +1135,351 @@ void NetworkInterface::recv_frame( EthernetFrame frame )
 ```
 
 这个实验写完，对 cpp 的性质、模式也有了比较多一点的理解，以及分层、定义的结构。对于网络而言，大概理解了层级间的解析关系，也能感觉到其实原理上面的“层级”其实也是通过代码来实现、解析的。
+
+## Check6
+### 实现 Router
+
+Router 有点类似路由器，作用是转发/路由一个 IP 到另一个 IP 的包。但是与家用路由器又有些不同，家用的是局域网内共用一个公网 IP，而这个实验假设的是都是独立 IP 的无向图。
+
+具体实现起来，相当于是上一个 Check 的再底层。在路由到指定 IP 以后，需要调用上面的 Send 来发送数据包。区别在于，Check5 在链路层处理 ARP/IP-MAC 的转换，但是 Router 只处理 IP 包的流转，而不处理具体的数据。
+
+大致的思路是，用一个 addroute 函数添加路由表，然后 router 轮询每个接口（即 Check5 实现的 Interface），处理每个接口要发送的包，转发到指定接口。这里面的原理是，转发是分层的，前缀 `x.x.x.x` 配合前缀长度 `/len` 来表示匹配层级，如果有多个匹配项，需要去到 len 最长的，因为最精确。所以要实现一个最长匹配的算法。
+
+首先还是看一下 Router 类，要补充每一个条目的具体信息才能够进行 add。然后用 match 函数来判断是否符合要求，后续方便实现最长匹配。
+
+```cpp
+class Router
+{
+public:
+  Router() : routing_table_() {}
+  // Add an interface to the router
+  // \param[in] interface an already-constructed network interface
+  // \returns The index of the interface after it has been added to the router
+  size_t add_interface( std::shared_ptr<NetworkInterface> interface )
+  {
+    interfaces_.push_back( notnull( "add_interface", std::move( interface ) ) );
+    return interfaces_.size() - 1;
+  }
+
+  // Access an interface by index
+  std::shared_ptr<NetworkInterface> interface( const size_t N ) { return interfaces_.at( N ); }
+
+  // Add a route (a forwarding rule)
+  void add_route( uint32_t route_prefix,
+                  uint8_t prefix_length,
+                  std::optional<Address> next_hop,
+                  size_t interface_num );
+
+  // Route packets between the interfaces
+  void route();
+
+private:
+  // The router's collection of network interfaces
+  std::vector<std::shared_ptr<NetworkInterface>> interfaces_ {};
+  // 新增
+  struct RouteEntry
+  {
+    // 路由表条目
+    uint32_t route_prefix;           // 网络前缀
+    uint8_t prefix_length;           // 前缀长度
+    std::optional<Address> next_hop; // 下一跳地址，null 表示直接交付
+    size_t interface_num;            // 出口索引
+    RouteEntry( uint32_t prefix, uint8_t length, std::optional<Address> hop, size_t interface_num_ )
+      : route_prefix( prefix ), prefix_length( length ), next_hop( hop ), interface_num( interface_num_ ) {};
+  };
+  // 简单向量存储
+  std::vector<RouteEntry> routing_table_;
+  // 辅助函数，判断目的 IP 是否匹配某条路由
+  static bool matches( uint32_t dst, uint32_t prefix, uint8_t len )
+  {
+    if ( len == 0 ) {
+      return true;
+    }
+    if ( len > 32 ) {
+      return false; // 非法前缀长度
+    }
+    uint32_t mask = ( len == 32 ) ? ~0U : ( ~0U << ( 32 - len ) );
+    // 比较网络部分是否相同
+    return ( dst & mask ) == ( prefix & mask );
+  }
+}
+```
+
+然后稍微实现以下 add：
+
+```cpp
+void Router::add_route( const uint32_t route_prefix,
+                        const uint8_t prefix_length,
+                        const optional<Address> next_hop,
+                        const size_t interface_num )
+{
+  routing_table_.emplace_back( route_prefix, prefix_length, next_hop, interface_num );
+}
+```
+
+核心是 route 的实现，主要还是边界的判断。由于使用了移位来进行优化，所以要考虑移位的合理性。比如 `1<<32` 会导致未定义行为。大致逻辑是遍历 interface，取出其中缓存的 datagram，然后看 datagram 的目标 ip，在 router 表中找到下一跳传过去。
+
+在此之前要实现一下前面漏掉的 maybe-receive 函数，用来给从每一个接口当中取出数据包。最后测试就是卡在了这里反复过不了，主要原因是无意间进行了拷贝，导致没有修改到原容器……
+
+```cpp
+std::optional<InternetDatagram> NetworkInterface::maybe_receive()
+{
+  // 取出第一个，返回
+  if ( datagrams_received_.empty() ) {
+    return std::nullopt;
+  }
+  InternetDatagram dgram = std::move( datagrams_received_.front() );
+  datagrams_received_.pop();
+  return dgram;
+}
+```
+
+所以要注意是否有隐式的拷贝导致的二义。
+
+最后就是 route，有了前面的铺垫，只要把逻辑完善就可以了。
+
+```cpp
+void Router::route()
+{
+  // 遍历所有接口，处理每个接口中的数据包
+  for ( auto& interface : interfaces_ ) {
+    while ( auto dgram = interface->maybe_receive() ) {
+      if ( dgram->header.ttl <= 1 ) {
+        continue; // ttl 超过，丢弃
+      }
+      dgram->header.ttl -= 1;
+      dgram->header.compute_checksum(); // 重新计算校验和
+      // 查表，发送到指定 next_hop
+      // LPM 算法，找最优
+      const RouteEntry* best_match = nullptr;
+      for ( const auto& entry : routing_table_ ) {
+        if ( matches( dgram->header.dst, entry.route_prefix, entry.prefix_length ) ) {
+          // 选择 prefix 更长的路由
+          if ( !best_match || entry.prefix_length > best_match->prefix_length ) {
+            best_match = &entry;
+          }
+        }
+      }
+      if ( !best_match ) {
+        // 没有匹配路由，丢弃
+        std::cerr << "DEBUG: No route found, dropping!\n";
+        continue;
+      }
+      // 确定下一跳，并发送
+      std::cerr << "DEBUG: Sending via interface " << best_match->interface_num << "\n";
+      const Address next_hop_addr = best_match->next_hop.has_value()
+                                      ? best_match->next_hop.value()
+                                      : Address::from_ipv4_numeric( dgram->header.dst );
+      // std::cerr << "DEBUG: Matched route: " << best_match->route_prefix << "/" << best_match->prefix_length
+      //           << " via " << ( best_match->next_hop.has_value() ? best_match->next_hop->to_string() : "direct" )
+      //           << " interface " << best_match->interface_num << " target " << next_hop_addr.to_string() << "\n";
+      //  通过指定接口发送
+      interfaces_[best_match->interface_num]->send_datagram( *dgram, next_hop_addr );
+    }
+  }
+}
+```
+
+## Check7
+### 综合实验
+
+```bash
+# Step 1: 验证历史债务
+cmake --build build --target test  # 确保所有Checkpoints 0-6测试通过
+
+# Step 2: 构建带有内存消毒剂的版本（防段错误）
+cmake -S . -B build -DSANITIZED_APPS=True
+cmake --build build
+
+# Step 3: 本地四终端调试（单节点环回）
+# Terminal 1: tshark监控（设置协议解码断点）
+sudo tshark -ni lo -d udp.port==2080,eth -d udp.port==2050,eth 'port 2080 or port 2050'
+
+# Terminal 2: Router（核心交换节点）
+./build/apps/fun_router \
+  interface:stanford:50.0.0.1:9050:127.0.0.1:2050 \
+  interface:ucla:80.0.0.1:9080:127.0.0.1:2080 \
+  route:50.0.0.0:8:stanford \
+  route:80.0.0.0:8:ucla
+
+# Terminal 3: Server（服务提供方）
+./build/apps/tcp_eth_udp server 2050 50.0.0.1 50.9.8.7:80
+
+# Terminal 4: Client（服务消费方）
+./build/apps/tcp_eth_udp client 2080 127.0.0.1:9080 80.0.0.1 80.6.5.4 50.9.8.7:80
+
+# Step 4: 分布式部署（多主机）
+# 将127.0.0.1替换为CS144 VPN分配的10.144.x.x地址
+# 确保防火墙（ufw）允许UDP端口通信
+
+# Step 5: 压力测试
+# 在Client发送1MB随机数据，Server校验MD5/SHA1哈希
+dd if=/dev/urandom bs=1M count=1 | ./build/apps/tcp_eth_udp client ...
+```
+
+整体而言是对前面的综合，对于各种层级，可以参考下面的图来理解：
+
+```text
+┌─────────────────────────────────────────────┐
+│  Layer 5: Application (你的打字输入)          │
+│  "Hello"                                    │
+├─────────────────────────────────────────────┤
+│  Layer 4: TCP (你的 Checkpoint 1-3)          │
+│  ├─ Src Port: 54321                         │
+│  ├─ Dst Port: 80                            │
+│  ├─ Seq: 123456                             │
+│  └─ Payload: "Hello"                        │
+├─────────────────────────────────────────────┤
+│  Layer 3: IP Virtual (你的虚拟互联网)         │
+│  ├─ Src IP: 80.6.5.4    (UCLA 虚拟)         │
+│  ├─ Dst IP: 50.9.8.7    (Stanford 虚拟)     │
+│  ├─ Protocol: TCP (6)                       │
+│  └─ TTL: 64                                 │
+├─────────────────────────────────────────────┤
+│  Layer 2: Ethernet (你的 Checkpoint 5)       │
+│  ├─ Src MAC: 02:00:00:00:00:01              │
+│  ├─ Dst MAC: 02:00:00:00:00:02  (Router)    │
+│  ├─ Type: 0x0800 (IPv4)                     │
+│  └─ Payload: [IP Packet above]              │
+├─────────────────────────────────────────────┤
+│  Layer 1.5: UDP Tunnel (课程代码)            │ ← 关键层：你的Eth帧被塞进这里
+│  ├─ Src IP: 127.0.0.1   (物理真实)          │
+│  ├─ Src Port: 2080      (UCLA物理端口)      │
+│  ├─ Dst IP: 127.0.0.1   (物理真实)          │
+│  ├─ Dst Port: 9080      (Router物理端口)    │
+│  └─ Payload: [整个Ethernet Frame作为纯数据]  │
+├─────────────────────────────────────────────┤
+│  Layer 1: Physical (操作系统/真实网卡)         │
+│  └─ Raw bytes on wire (WiFi/Ethernet)       │
+└─────────────────────────────────────────────┘
+```
+
+首先第一层是输入的 payload，然后需要封装到一个 TCP 结构体里（TCP 层），接着通过 send-datagram 来发送出去，封装成 IP Datagram 进入 IP 层。由于此时 dest IP 不在本地子网中，所以需要查询路由表，发送到网关。而网关的 MAC 地址也是未知的，所以需要 ARP 解析。得到了 MAC 以后，就可以发送一个完整的 Ethernet 帧，但是由于没有网线的权限，所以 Check7 给了一个 udp 隧道的实现，从而绕过物理网，直接从本地的 2080 端口发送到 9080 端口去。
+
+四个终端的逻辑关系如下：
+
+```text
+┌─────────────────────────────────────────────────────┐
+│  Terminal 4: tcp_eth_udp (Client 进程)             │
+│  ┌───────────────────────────────────────────────┐ │
+│  │  课程代码: main(), UDP Socket管理, EventLoop   │ │
+│  │  ├─ 监听端口: 2080 (物理)                      │ │
+│  │  └─ 对端指向: 127.0.0.1:9080                 │ │
+│  └───────────────────────────────────────────────┘ │
+│           ↑↓ 调用你的代码                           │
+│  ┌───────────────────────────────────────────────┐ │
+│  │  [你的代码] TCPConnection                     │ │
+│  │  [你的代码] NetworkInterface                  │ │
+│  │  └─ 生成虚拟IP包 (80.6.5.4 → 50.9.8.7)       │ │
+│  └───────────────────────────────────────────────┘ │
+└─────────────────────────────────────────────────────┘
+                         │
+                         ↓ UDP Packet (物理层)
+┌─────────────────────────────────────────────────────┐
+│  Terminal 2: fun_router (Router 进程)                │
+│  ┌───────────────────────────────────────────────┐ │
+│  │  课程代码: UDP Socket, 解封装/重封装逻辑        │ │
+│  │  ├─ 接收: 127.0.0.1:9080                      │ │
+│  │  └─ 发送: 127.0.0.1:2050 (到Server)          │ │
+│  └───────────────────────────────────────────────┘ │
+│           ↑↓ 调用你的代码                           │
+│  ┌───────────────────────────────────────────────┐ │
+│  │  [你的代码] Router::route()                   │ │
+│  │  [你的代码] NetworkInterfaces (2个接口)        │ │
+│  │  └─ 路由决策: 50.x.x.x → stanford接口         │ │
+│  └───────────────────────────────────────────────┘ │
+└─────────────────────────────────────────────────────┘
+                         │
+                         ↓ UDP Packet (物理层)
+┌─────────────────────────────────────────────────────┐
+│  Terminal 3: tcp_eth_udp (Server 进程)             │
+│  ┌───────────────────────────────────────────────┐ │
+│  │  课程代码: UDP Socket (端口 2050)              │ │
+│  └───────────────────────────────────────────────┘ │
+│           ↑↓ 调用你的代码                           │
+│  ┌───────────────────────────────────────────────┐ │
+│  │  [你的代码] TCPConnection ( listens on :80)    │ │
+│  │  [你的代码] NetworkInterface (IP: 50.0.0.1)   │ │
+│  │  └─ 虚拟IP: 50.9.8.7                          │ │
+│  └───────────────────────────────────────────────┘ │
+└─────────────────────────────────────────────────────┘
+```
+
+数据包的流动如下：
+
+```text
+                 ENCAPSULATION (发送端)
+                 ───────────────────────
+                 
+键盘输入"Hello"
+    │
+    ▼
+[TCPConnection::write]  ← 你的Checkpoint 3
+生成 TCP Segment
+    │
+    ▼
+[NetworkInterface::send_datagram]  ← 你的Checkpoint 5
+生成 IP Datagram (Src: 80.6.5.4, Dst: 50.9.8.7)
+    │
+    ▼
+[NetworkInterface::transmit]
+生成 Ethernet Frame (Dst MAC: Router的MAC)
+    │
+    ▼
+[tcp_eth_udp 课程代码]
+封装进 UDP Datagram
+(Src: 127.0.0.1:2080, Dst: 127.0.0.1:9080)
+    │
+    ▼
+[操作系统 sendto()] ──────┐
+                         │
+                    真实网络传输
+                    (Loopback或CS144 VPN)
+                         │
+                         ▼
+                [操作系统 recvfrom()]
+                         │
+                         ▼
+                 FORWARDING (路由器)
+                 ───────────────
+                 
+[fun_router 课程代码]
+解封装出 Ethernet Frame
+    │
+    ▼
+[Router::route]  ← 你的Checkpoint 6
+查路由表: 50.x.x.x → stanford接口
+    │
+    ▼
+[NetworkInterface 重新封装]
+新 Ethernet Frame (Dst: Server MAC)
+    │
+    ▼
+[fun_router 课程代码]
+封装进新 UDP Datagram
+(Src: 127.0.0.1:????, Dst: 127.0.0.1:2050)
+    │
+    ▼
+[操作系统] ───────────┐
+                      │
+                 真实网络传输
+                      │
+                      ▼
+              DECAPSULATION (接收端)
+              ───────────────────
+              
+[tcp_eth_udp Server 课程代码]
+解封装出 Ethernet Frame
+    │
+    ▼
+[NetworkInterface::recv_frame]  ← 你的Checkpoint 5
+提取 IP Datagram
+    │
+    ▼
+[TCPConnection::segment_received]  ← 你的Checkpoint 3
+处理 TCP 协议，写入 ByteStream
+    │
+    ▼
+应用层 read() → 显示在终端
+```
+
