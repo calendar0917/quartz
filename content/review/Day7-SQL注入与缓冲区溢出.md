@@ -1,16 +1,16 @@
 # Day 7 复习：SQL注入与缓冲区溢出
 
-## 📋 学习目标
-- [ ] 理解SQL注入攻击的原理
-- [ ] 掌握SQL注入的三种类型
-- [ ] 理解SQL注入的防御措施
-- [ ] 理解缓冲区溢出的原理
-- [ ] 区分栈溢出和堆溢出
-- [ ] 掌握防御缓冲区溢出的方法
+## 学习目标
+- 理解SQL注入攻击的原理
+- 掌握SQL注入的三种类型
+- 理解SQL注入的防御措施
+- 理解缓冲区溢出的原理
+- 区分栈溢出和堆溢出
+- 掌握防御缓冲区溢出的方法
 
 ---
 
-## 一、SQL注入攻击 ★★★
+## 一、SQL注入攻击
 
 ### 1.1 什么是SQL注入
 
@@ -97,7 +97,7 @@
 
 ### 1.5 SQL注入的防御措施
 
-#### **防御1：参数化查询（Prepared Statement）** ⭐ 核心方法
+#### **防御1：参数化查询（Prepared Statement）** - 核心方法
 
 **原理**：将用户输入作为数据参数，而不是SQL代码的一部分来执行。
 
@@ -164,14 +164,14 @@ GRANT SELECT ON mydb.* TO 'webuser'@'localhost';
 
 | 方法 | 有效性 | 实现难度 | 推荐度 |
 |------|--------|---------|--------|
-| 参数化查询 | ★★★★★ | ★★ | 必须使用 |
-| 输入验证 | ★★★ | ★ | 辅助使用 |
-| 最小权限 | ★★★★ | ★ | 必须使用 |
-| WAF | ★★★ | ★ | 辅助使用 |
+| 参数化查询 | 最高 | 中 | 必须使用 |
+| 输入验证 | 中 | 低 | 辅助使用 |
+| 最小权限 | 高 | 低 | 必须使用 |
+| WAF | 中 | 低 | 辅助使用 |
 
 ---
 
-## 二、缓冲区溢出 ★★★★ 【require.md重点】
+## 二、缓冲区溢出
 
 ### 2.1 什么是缓冲区溢出
 
@@ -194,7 +194,7 @@ GRANT SELECT ON mydb.* TO 'webuser'@'localhost';
 
 ### 2.4 缓冲区溢出的类型
 
-#### **类型1：栈溢出（Stack Overflow）** ⭐ 重点
+#### **类型1：栈溢出（Stack Overflow）** - 重点
 
 **发生位置**：函数调用时的栈（Stack）中
 
@@ -234,6 +234,51 @@ GRANT SELECT ON mydb.* TO 'webuser'@'localhost';
 低地址
 ```
 
+**栈溢出的C代码实例**：
+
+```c
+// vulnerable.c - 栈溢出漏洞示例
+#include <stdio.h>
+#include <string.h>
+
+void vulnerable_function(char *input) {
+    char buffer[64];  // 64字节的缓冲区
+    
+    // 漏洞：没有检查input长度，直接复制到buffer
+    strcpy(buffer, input);
+    
+    printf("Input: %s\n", buffer);
+}
+
+int main(int argc, char *argv[]) {
+    if (argc != 2) {
+        printf("Usage: %s <input>\n", argv[0]);
+        return 1;
+    }
+    
+    vulnerable_function(argv[1]);
+    return 0;
+}
+```
+
+**攻击过程演示**：
+
+```bash
+# 编译（禁用栈保护，便于演示）
+gcc -fno-stack-protector -z execstack -o vulnerable vulnerable.c
+
+# 正常输入
+./vulnerable "Hello"
+# 输出：Input: Hello
+
+# 溢出攻击：输入128个字符（超过buffer的64字节）
+./vulnerable $(python -c "print('A'*128)")
+# 可能导致段错误（覆盖了返回地址）
+
+# 精确攻击：覆盖返回地址到shellcode
+# 需要计算buffer到返回地址的偏移
+```
+
 #### **类型2：堆溢出（Heap Overflow）**
 
 **发生位置**：程序动态分配的内存区域——堆（Heap）
@@ -248,13 +293,69 @@ GRANT SELECT ON mydb.* TO 'webuser'@'localhost';
 - 覆盖对象虚函数表指针
 - 破坏内存管理链表结构
 
-**攻击过程**：
+**堆溢出的C代码实例**：
+
+```c
+// heap_overflow.c - 堆溢出漏洞示例
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct {
+    char name[64];
+    void (*callback)();  // 函数指针
+} UserRecord;
+
+void malicious_code() {
+    printf("Malicious code executed!\n");
+    // 这里可以是shellcode
+}
+
+void legitimate_callback() {
+    printf("Legitimate callback executed\n");
+}
+
+int main(int argc, char *argv[]) {
+    UserRecord *user1, *user2;
+    
+    // 分配两个堆对象
+    user1 = (UserRecord *)malloc(sizeof(UserRecord));
+    user2 = (UserRecord *)malloc(sizeof(UserRecord));
+    
+    if (!user1 || !user2) {
+        printf("Memory allocation failed\n");
+        return 1;
+    }
+    
+    // 设置user1的回调函数为合法函数
+    user1->callback = legitimate_callback;
+    
+    // 漏洞：没有检查输入长度
+    printf("Enter name for user1: ");
+    scanf("%s", user1->name);  // 溢出！
+    
+    // 如果输入超过64字节，会溢出到user1->callback
+    // 攻击者可以覆盖callback为malicious_code的地址
+    
+    printf("Executing user1 callback:\n");
+    user1->callback();
+    
+    free(user1);
+    free(user2);
+    return 0;
+}
 ```
-1. 攻击者提供超长输入到堆缓冲区
-2. 溢出数据覆盖相邻的堆数据
-3. 破坏函数指针或虚表指针
-4. 程序通过被破坏的指针进行调用
-5. 控制流被劫持
+
+**攻击原理**：
+```
+堆内存布局：
+user1: [name(64字节)] [callback(8字节)]
+user2: [name(64字节)] [callback(8字节)]
+
+当输入超过64字节时：
+- 溢出会覆盖user1->callback
+- 如果覆盖为malicious_code的地址
+- 调用user1->callback()就会执行恶意代码
 ```
 
 #### **类型3：全局数据区溢出**
@@ -280,21 +381,9 @@ GRANT SELECT ON mydb.* TO 'webuser'@'localhost';
 2. **跟踪执行**：在程序处理超长输入时跟踪其行为
 3. **模糊测试**：使用自动化工具提供随机输入
 
-### 2.7 ⚠️ 考点重点
-
-**填空题/判断题可能考点：**
-- 缓冲区溢出是编程错误
-- 栈溢出可以覆盖返回地址
-- Shellcode是攻击用的机器码
-
-**简答题考点：**
-- 缓冲区溢出的原理
-- 栈溢出和堆溢出的区别
-- 如何防御缓冲区溢出
-
 ---
 
-## 三、缓冲区溢出的防御措施 ★★★★★
+## 三、缓冲区溢出的防御措施
 
 ### 3.1 编译时防御
 
@@ -357,6 +446,56 @@ GRANT SELECT ON mydb.* TO 'webuser'@'localhost';
 3. 函数结束：检查金丝雀值
 4. 如果被篡改：终止程序
 5. 如果未篡改：正常返回
+```
+
+**栈保护机制的C代码实例**：
+
+```c
+// stack_canary.c - 栈保护机制演示
+#include <stdio.h>
+#include <string.h>
+
+void vulnerable_function(char *input) {
+    char buffer[64];
+    unsigned long canary;  // 金丝雀值
+    
+    // 函数开始：设置金丝雀值
+    canary = 0xDEADBEEF;  // 实际系统中是随机值
+    
+    strcpy(buffer, input);  // 潜在的溢出点
+    
+    // 函数结束：检查金丝雀值
+    if (canary != 0xDEADBEEF) {
+        printf("Stack smashing detected! Canary corrupted.\n");
+        return;  // 或调用abort()
+    }
+    
+    printf("Function executed safely: %s\n", buffer);
+}
+
+int main(int argc, char *argv[]) {
+    if (argc != 2) {
+        printf("Usage: %s <input>\n", argv[0]);
+        return 1;
+    }
+    
+    vulnerable_function(argv[1]);
+    return 0;
+}
+```
+
+**编译和测试**：
+```bash
+# 使用栈保护编译（GCC默认启用-fstack-protector）
+gcc -fstack-protector -o stack_canary stack_canary.c
+
+# 正常输入
+./stack_canary "Hello"
+# 输出：Function executed safely: Hello
+
+# 溢出攻击
+./stack_canary $(python -c "print('A'*128)")
+# 输出：Stack smashing detected! Canary corrupted.
 ```
 
 **优点**：
@@ -480,17 +619,3 @@ SQL注入与缓冲区溢出
 9. × （可以绕过认证）
 10. √
 
----
-
-## 六、明日预告（Day 8）
-
-**Day 8 主题：恶意软件与DoS攻击**
-
-- 恶意软件分类（病毒、蠕虫、木马、勒索软件）
-- 缓冲区溢出与恶意软件的关系
-- SYN Flood攻击原理
-- DoS攻击的防御
-
----
-
-**恭喜完成 Day 7 复习！** 🎉
